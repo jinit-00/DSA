@@ -1,14 +1,15 @@
 class Solution {
 public:
-    vector<int> findMissingElements(vector<int>& nums) {
-        sort(nums.begin(),nums.end());
-        int n = nums.size();
+    vector<int> findMissingElements(vector<int>& nums) {    
+        int mi = *min_element(nums.begin(),nums.end());
+        int ma = *max_element(nums.begin(),nums.end());
         vector<int> answer;
-        for(int i=1;i<n;i++)
+        unordered_set<int> mp(nums.begin(),nums.end());
+        for(int i=mi;i<=ma;i++)
         {
-            for(int j=nums[i-1]+1;j<nums[i];j++)
-            answer.push_back(j);
+            if(!mp.count(i))
+            answer.push_back(i);
         }
-    return answer;  
+    return answer;
     }
 };
