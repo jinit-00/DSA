@@ -15,12 +15,10 @@ public:
             return;
         }
         grid[row][col] = -1;
-        for(vector<int> &d : dir)
-        {
-            int new_i = row + d[0];
-            int new_j = col + d[1];
-            solve(grid, new_i,new_j,count+1);
-        }
+solve(grid, row + 1, col, count + 1); // down
+solve(grid, row - 1, col, count + 1); // up
+solve(grid, row, col + 1, count + 1); // right
+solve(grid, row, col - 1, count + 1); // left
         grid[row][col] = 0;
 
     }
