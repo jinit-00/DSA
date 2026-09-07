@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int distinctSubseqII(string s) {
+        const long long MOD = 1e9 + 7;
+
+        long long dp = 1;  // includes empty subsequence
+        vector<long long> last(26, 0);
+
+        for (char c : s) {
+            int x = c - 'a';
+
+            long long newDp = (2 * dp - last[x] + MOD) % MOD;
+
+            // Save the old dp before processing this character.
+            last[x] = dp;
+            dp = newDp;
+        }
+
+        // Remove the empty subsequence.
+        return (dp - 1 + MOD) % MOD;
+    }
+};
